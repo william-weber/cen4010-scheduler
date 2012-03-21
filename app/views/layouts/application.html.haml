@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title UNF Department of Computer Science
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+
+    / Le HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{:data => {:toggle => "collapse", :target => ".nav-collapse"} }
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "CS Schedule", root_path, :class => "brand"
+          .nav-collapse
+            %ul.nav
+              %li.active
+                %a{:href => root_path} Home
+              - if user_signed_in?
+                %li
+                  %a{:href => edit_user_registration_path } My Profile
+                %li
+                  %a{:href => destroy_user_session_path } Logout
+              - else
+                %li
+                  %a{:href => new_user_session_path } Login
+                %li
+                  %a{:href => new_user_registration_path } Sign up
+    .container
+      - flash.each do |name, msg|
+        = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
+          %a.close{:href => "#", :data => {:dismiss => "alert"} } ×
+          = msg
+      = yield
+      %hr
+      %footer
+        %p &copy; Company 2012

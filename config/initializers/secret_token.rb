@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Cen4010Scheduler::Application.config.secret_token = '8f79c4abb0f51e860bec4c1d275cb1dc19092020c0cf880e2517944cde71d6ed0c4634c75000282bb21d5d14a96f3cd0adb9a7113277ac0dadc5d3521d16fe27'
+Cen4010Scheduler::Application.config.secret_token = '261bdf0e5be8c67825f9f6045eb379cabbb35aa90b0b7908567d7aa13d02373503a6645c62a106041f4a4b1ac5db436f4f9e1914886fb724f4728b8f2c3333fd'
