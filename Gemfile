@@ -31,6 +31,7 @@ group :test do
   gem "email_spec", ">= 1.2.1"
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'forgery'
   gem "launchy"
   gem "shoulda-matchers"
 end

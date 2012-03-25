@@ -17,6 +17,15 @@ FactoryGirl.define do
     name { Faker::Lorem.sentence(2) } 
     sequence(:identifier, 1000) {|n| "CEN#{n}" }
     degree_program
-    offering_pattern { 1 + Random.rand(4) }
+  end
+
+  factory :offered_course, :parent => :course do
+    name { Faker::Lorem.sentence(2) } 
+    sequence(:identifier, 1000) {|n| "CEN#{n}" }
+    degree_program
+    offered_odd_fall { Forgery::Basic.boolean }
+    offered_even_spring { Forgery::Basic.boolean }
+    offered_even_fall { Forgery::Basic.boolean }
+    offered_odd_spring { Forgery::Basic.boolean }
   end
 end

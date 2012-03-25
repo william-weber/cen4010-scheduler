@@ -15,7 +15,7 @@ Cen4010Scheduler::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :courses, :only => [:index]
 
   # Sample resource route with options:
   #   resources :products do
@@ -52,7 +52,7 @@ Cen4010Scheduler::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'courses#index'
 
   # See how all your routes lay out with "rake routes"
 

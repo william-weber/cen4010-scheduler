@@ -11,15 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321212705) do
+ActiveRecord::Schema.define(:version => 20120324215819) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "identifier"
     t.integer  "degree_program_id"
-    t.integer  "offering_pattern"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.boolean  "offered_odd_fall"
+    t.boolean  "offered_even_spring"
+    t.boolean  "offered_even_fall"
+    t.boolean  "offered_odd_spring"
   end
 
   create_table "degree_programs", :force => true do |t|

@@ -59,7 +59,7 @@ Given /^I exist as a student$/ do
   create_user
 end
 
-Given /^I do not exist as a student$/ do
+Given /^I am a guest user$/ do
   create_visitor
   delete_user
 end
