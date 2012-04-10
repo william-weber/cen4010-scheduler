@@ -1,6 +1,6 @@
 .page-header
   %h1= "Courses for #{@semester}"
-  = link_to "Request Courses", new_course_request_path 
+  = link_to "Request Courses", new_course_request_path if user_signed_in?
 
 .row
   .span4

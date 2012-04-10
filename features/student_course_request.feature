@@ -2,6 +2,12 @@ Feature: Student Requests Courses
   As a student
   I want to request courses not offered
 
+  @wip
+    Scenario: Users who aren't students shouldn't see course request link
+      Given I am a guest user
+      When I go to the home page
+      Then I should not see "Request Courses"
+
     Scenario: New Request
       Given I am logged in as a student
       And there is a course with identifier COT3100
