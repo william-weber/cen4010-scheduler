@@ -1,0 +1,23 @@
+.row
+  .span6
+    %dl.dl-horizontal
+      %dt
+        Semester
+      %dd= course_request.season
+      %dt
+        Year
+      %dd= course_request.year
+
+  .span6
+    - course_request.course_request_courses.each do |req|
+      %dl.dl-horizontal
+        %dt
+          Course
+        %dd= req.course.full_name
+        %dt
+          Time
+        %dd= req.time
+        %dt
+          Rank
+        %dd= req.rank
+        %br

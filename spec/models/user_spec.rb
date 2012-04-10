@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  subject { Factory(:user) }
+  subject { FactoryGirl.create(:user) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:n_number) }
   it { should validate_presence_of(:first_name) }
@@ -11,7 +11,7 @@ describe User do
   it { should belong_to(:degree_program) }
 
   it "should factory" do
-    user = Factory :user
+    user = FactoryGirl.create :user
     assert user.valid?
   end
 end

@@ -12,16 +12,16 @@ Feature: Sign up
       
     Scenario: User signs up with invalid email
       When I sign up with an invalid email
-      Then I should see an invalid email message
+      Then I should see "is invalid"
 
     Scenario: User signs up without password
       When I sign up without a password
-      Then I should see a missing password message
+      Then I should see "can't be blank"
 
     Scenario: User signs up without password confirmation
       When I sign up without a password confirmation
-      Then I should see a missing password confirmation message
+      Then I should see "doesn't match confirmation"
 
     Scenario: User signs up with mismatched password and confirmation
       When I sign up with a mismatched password confirmation
-      Then I should see a mismatched password message
+      Then I should see "doesn't match confirmation"

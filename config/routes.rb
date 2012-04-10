@@ -16,6 +16,7 @@ Cen4010Scheduler::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :courses, :only => [:index]
+  resources :course_requests
 
   # Sample resource route with options:
   #   resources :products do

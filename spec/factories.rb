@@ -28,4 +28,17 @@ FactoryGirl.define do
     offered_even_fall { Forgery::Basic.boolean }
     offered_odd_spring { Forgery::Basic.boolean }
   end
+
+  factory :course_request_course do
+    rank { Random.new.rand(1..3) }
+    course
+    time { CourseRequestCourse.times.sample }
+  end
+
+  factory :course_request do
+    season { CourseRequest.seasons.sample }
+    year { Random.new.rand(2012..2015) }
+    user
+    course_request_courses { [ FactoryGirl.build(:course_request_course) ] }
+  end
 end

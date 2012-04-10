@@ -1,0 +1,29 @@
+.row{ :id => dom_id(course_request) }
+  .span6
+    %dl.dl-horizontal
+      %dt
+        Semester
+      %dd= course_request.season
+      %dt
+        Year
+      %dd= course_request.year
+      %br
+      %br
+      %dd= link_to "Edit", edit_course_request_path(course_request), :class => 'btn btn-primary'
+
+  .span6
+    - course_request.course_request_courses.each do |req|
+      %dl.dl-horizontal
+        %dt
+          Course
+        %dd= req.course.full_name
+        %dt
+          Time
+        %dd= req.time
+        %dt
+          Rank
+        %dd= req.rank
+        %br
+.row
+  .span12
+    %hr.soften

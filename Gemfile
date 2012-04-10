@@ -8,8 +8,10 @@ gem 'rails', '3.2.2'
 gem 'bootstrap-generators', '~> 2.0'
 gem 'devise'
 gem "haml-rails"
+gem 'nested_form', :git => 'git://github.com/sandyw/nested_form.git'
 gem 'pg'
 gem 'simple_form', '~> 2.0'
+gem 'twitter-bootstrap-rails'
 
 
 # Gems used only for assets and not required
@@ -22,6 +24,14 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'guard'
+  gem 'guard-cucumber'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'yajl-ruby'
 end
 
 group :test do

@@ -15,7 +15,6 @@ Feature: View available courses
       When I go to the course listing page
       Then I should see "Example Course" on the page
 
-@wip
     Scenario: Guest user can see courses for current semester
       Given I am a guest user
       And there is a course named "Example Course" that is offered this semester
@@ -24,6 +23,6 @@ Feature: View available courses
       And I select "Fall" from "semester"
       And I select "2014" from "year"
       Then I press "View"
-      Then I should see "Example Course" on the page
-      Then I should see "Other Course" on the page
+      Then I should see "Example Course"
+      Then I should see "Other Course" 
 

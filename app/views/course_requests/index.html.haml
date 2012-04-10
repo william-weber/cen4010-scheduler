@@ -1,0 +1,10 @@
+.page-header
+  %h1 
+    My Course Requests
+
+- if @course_requests.nil?
+  %h3
+    Looks like you don't have any course requests!
+
+- else
+  = render :partial => 'course_request', :collection => @course_requests

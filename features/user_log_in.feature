@@ -4,7 +4,7 @@ Feature: Student log in
   Should be able to log in
 
     Scenario: Student is not signed up
-      Given I do not exist as a student
+      Given I am a guest user
       When I sign in with valid student credentials
       Then I see an invalid login message
       And I should be signed out

@@ -1,0 +1,9 @@
+.page-header
+  %h1= "Student Course Request: #{@course_request.season} #{@course_request.year}"
+
+  - if @course_request.nil?
+    %h3
+      Sorry, we could not find a request with those parameters.
+
+  - else
+    = render @course_request

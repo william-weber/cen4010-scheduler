@@ -3,6 +3,10 @@ class Course < ActiveRecord::Base
   validates :identifier, :presence => true, :uniqueness => { :case_sensitive => false }
   belongs_to :degree_program
 
+  def full_name
+    "#{identifier} #{name}"
+  end
+
   def self.courses_for(array)
     year = array[1]
     season = array[0]

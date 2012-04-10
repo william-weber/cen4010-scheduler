@@ -12,6 +12,7 @@
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+    
     = csrf_meta_tags
   %body
     .navbar.navbar-fixed-top
@@ -30,7 +31,9 @@
                 %li
                   %a{:href => edit_user_registration_path } My Profile
                 %li
-                  %a{:href => destroy_user_session_path } Logout
+                  = link_to 'Logout', destroy_user_session_path, :method => :delete
+                %li
+                  = link_to "My Requests", course_requests_path
               - else
                 %li
                   %a{:href => new_user_session_path } Login
