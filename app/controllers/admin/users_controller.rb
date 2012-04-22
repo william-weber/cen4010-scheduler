@@ -33,6 +33,6 @@ class Admin::UsersController < ApplicationController
   protected
 
   def only_admin
-    #redirect_to 'home/index' unless current_user.is_admin
+    redirect_to 'home/index' unless (user_signed_in? && current_user.is_admin)
   end
 end
