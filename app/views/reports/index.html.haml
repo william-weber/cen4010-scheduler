@@ -19,9 +19,11 @@
         %th Date
         %th Type
         %th Owner
+        %th
       %tbody
         - @reports.each do |report|
           %tr
             %td= report.date_run
             %td= report.type
             %td= report.user.n_number
+            %td= link_to( 'View', report, :class => 'btn btn-info btn-mini' )
