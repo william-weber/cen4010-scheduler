@@ -30,18 +30,27 @@
         Please rank 1 (most preferred), 2 or 3 (least preferred).
         %br
         %br
-        = f.input :morning_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ]
-        = f.input :afternoon_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ]
-        = f.input :evening_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ]
+        = f.input :morning_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ], :label => 'Morning'
+        = f.input :afternoon_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ], :label => 'Afternoon'
+        = f.input :evening_rank, :as => :radio_buttons, :collection => [ 1, 2, 3 ], :label => 'Evening'
+    %hr
     .row
       .span6
-        = f.input :days_of_week_preference, :collection => array_for_select(FacultyCourseRequest.fall_spring_days)
-      .span6
+        %h3 Courses
+        Please select up to 3 courses you would like to teach this semester.
+        %br
+        %br
         = f.fields_for :course_request_courses do |crc_form|
           = crc_form.association :course, :collection => Course.all.map{ |course| [ course.full_name, course.id ] }
           = crc_form.input :time, :as => :select, :collection => CourseRequestCourse.times
           = crc_form.input :day, :as => :select, :collection => FacultyCourseRequest.fall_spring_days + FacultyCourseRequest.summer_days
           = crc_form.input :rank, :as => :radio_buttons, :collection => (1..3), :item_wrapper_class => 'inline'
+      .span6
+        %h3 Courses
+        Which days of the week, overall, would you prefer to teach?
+        %br
+        %br
+        = f.input :days_of_week_preference, :collection => array_for_select(FacultyCourseRequest.fall_spring_days)
 
   .form-actions
     = f.button :submit, :class => "btn-primary"

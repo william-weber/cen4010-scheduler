@@ -1,6 +1,8 @@
 .page-header
-  %h1 
-    My Course Requests
+  = link_to new_course_request_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Course Request
+  %h1 My Course Requests
 
 - if @course_requests.nil?
   %h3
