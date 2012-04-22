@@ -1,29 +1,27 @@
-.page-header
-  = link_to new_report_path, :class => 'btn btn-primary' do
-    %i.icon-plus.icon-white
-    New Report
-  %h1 Listing reports
+%div{ :style => 'float: right;' }
+  .btn-group
+    = link_to '#', :class => 'btn btn-primary', 'data-toggle' => 'dropdown' do
+      New Report by...
+      %span.caret
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Type
-      %th Date run
-      %th References
-      %th Day
-      %th Time
-      %th
-      %th
-      %th
+    %ul.dropdown-menu
+      %li= link_to 'Course', new_course_report_path
+      %li= link_to 'Day', new_day_report_path
+      %li= link_to 'Time', new_time_report_path
+      %li= link_to 'Students', new_student_report_path
+      %li= link_to 'Faculty', '#'
 
-  %tbody
-    - @reports.each do |report|
-      %tr
-        %td= report.type
-        %td= report.date_run
-        %td= report.references
-        %td= report.day
-        %td= report.time
-        %td= link_to 'Show', report
-        %td= link_to 'Edit', edit_report_path(report)
-        %td= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete
+%h1 Reports
+.row
+  .span12
+    %table.table.table-striped
+      %thead
+        %th Date
+        %th Type
+        %th Owner
+      %tbody
+        - @reports.each do |report|
+          %tr
+            %td= report.date_run
+            %td= report.type
+            %td= report.user.n_number

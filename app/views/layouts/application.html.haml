@@ -35,6 +35,8 @@
                   %li= link_to "My Requests", course_requests_path
                 - if current_user.is_faculty
                   %li= link_to "My Teaching Requests", faculty_course_requests_path
+                - if current_user.is_admin or current_user.is_secretary
+                  %li= link_to "Reports", reports_path
                 %li= link_to "Admin Users", admin_users_path
               - else
                 %li
