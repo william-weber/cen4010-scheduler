@@ -40,5 +40,17 @@ FactoryGirl.define do
     year { Random.new.rand(2012..2015) }
     user
     course_request_courses { [ FactoryGirl.build(:course_request_course) ] }
+
+    factory :faculty_course_request, :class => FacultyCourseRequest do
+      number_of_courses { course_request_courses.count }
+      days_of_week_preference { for_summer? ? Random.new.rand(0..FacultyCourseRequest.summer_days.length-1) : Random.new.rand(0..FacultyCourseRequest.fall_spring_days.length-1) }
+      summer_term_preference { for_summer? ? Random.new.rand(0..FacultyCourseRequest.summer_terms.length-1) : nil } 
+      course_preference_rank 1
+      days_of_week_rank 2
+      times_of_day_rank 3
+      morning_rank 1
+      afternoon_rank 2
+      evening_rank 3
+    end
   end
 end

@@ -1,0 +1,42 @@
+.page-header
+  = link_to faculty_course_requests_path, :class => 'btn' do
+    %i.icon-list-alt
+    Back
+  = link_to edit_faculty_course_request_path(@faculty_course_request), :class => 'btn btn-primary' do
+    %i.icon-pencil.icon-white
+    Edit
+  %h1 Listing faculty_course_requests
+
+%dl
+  %dt Season:
+  %dd= @faculty_course_request.season
+  %dt Year:
+  %dd= @faculty_course_request.year
+  %dt User:
+  %dd= @faculty_course_request.user_id
+  %dt Number of courses:
+  %dd= @faculty_course_request.number_of_courses
+  %dt Course release:
+  %dd= @faculty_course_request.course_release
+  %dt Sabbatical:
+  %dd= @faculty_course_request.sabbatical
+  %dt Dev leave:
+  %dd= @faculty_course_request.dev_leave
+  %dt Course preference:
+  %dd= @faculty_course_request.course_preference
+  %dt Days of week:
+  %dd= @faculty_course_request.days_of_week
+  %dt Times of day:
+  %dd= @faculty_course_request.times_of_day
+  %dt Morning:
+  %dd= @faculty_course_request.morning
+  %dt Afternoon:
+  %dd= @faculty_course_request.afternoon
+  %dt Evening:
+  %dd= @faculty_course_request.evening
+  %dt Summer term preference:
+  %dd= @faculty_course_request.summer_term_preference
+  %dt Summer days of week preference:
+  %dd= @faculty_course_request.summer_days_of_week_preference
+  %dt Fall spring days of week preference:
+  %dd= @faculty_course_request.fall_spring_days_of_week_preference

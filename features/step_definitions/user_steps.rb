@@ -21,6 +21,12 @@ def create_user
   @user = FactoryGirl.create(:user, n_number: @visitor[:n_number])
 end
 
+def create_faculty
+  create_visitor
+  delete_user
+  @user = FactoryGirl.create(:user, n_number: @visitor[:n_number], :is_student => false, :is_faculty => true)
+end
+
 def delete_user
   @user ||= User.first conditions: {:n_number => @visitor[:n_number]}
   @user.destroy unless @user.nil?
@@ -53,6 +59,11 @@ end
 
 Given /^I am logged in as a student$/ do
   create_user
+  sign_in
+end
+
+Given /^I am logged in as a faculty/ do
+  create_faculty
   sign_in
 end
 

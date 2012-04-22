@@ -1,0 +1,29 @@
+.page-header
+  = link_to new_report_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Report
+  %h1 Listing reports
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Type
+      %th Date run
+      %th References
+      %th Day
+      %th Time
+      %th
+      %th
+      %th
+
+  %tbody
+    - @reports.each do |report|
+      %tr
+        %td= report.type
+        %td= report.date_run
+        %td= report.references
+        %td= report.day
+        %td= report.time
+        %td= link_to 'Show', report
+        %td= link_to 'Edit', edit_report_path(report)
+        %td= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete

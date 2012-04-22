@@ -1,0 +1,32 @@
+.row
+  .span12
+    %h2= "Report for #{@course_report.course.full_name}"
+    %h3= "#{@course_report.season} #{@course_report.year}"
+    %h3= "Run #{@course_report.date_run}"
+    %hr
+.row
+  .span6
+    %h2 Students
+    %dl.dl-horizontal
+      %dt Requested By
+      %dd= @course_report.students.count
+    %br
+    Requests by time:
+    %dl.dl-horizontal
+      - @course_report.student_requests.map(&:time).compact.uniq.each do |time|
+        %dt= time
+        %dd= @course_report.student_requests.count{ |r| r.time == time }
+
+    %ul.unstyled
+      - @course_report.student_requests.each do |request|
+        %li= "#{request.user.n_number} rank: #{request.rank}"
+
+  .span6
+    %h2 Faculty
+    Faculty Requesting:
+    = @course_report.faculty.count
+    %br
+    %br
+    %ul.unstyled
+      - @course_report.faculty_requests.each do |request|
+        %li= "#{request.user.n_number} rank: #{request.rank}"

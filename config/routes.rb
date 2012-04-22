@@ -1,4 +1,5 @@
 Cen4010Scheduler::Application.routes.draw do
+
   devise_for :users
 
   get "home/index"
@@ -17,6 +18,18 @@ Cen4010Scheduler::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :courses, :only => [:index]
   resources :course_requests
+
+  resources :faculty_course_requests
+
+  resources :reports, :only => [ :index, :destroy ]
+  resources :course_reports, :only => [ :show, :new, :create ]
+  resources :day_reports, :only => [ :show, :new, :create ]
+  resources :time_reports, :only => [ :show, :new, :create ]
+  resources :student_reports, :only => [ :show, :new, :create ]
+
+  namespace :admin do
+    resources :users, :only => [ :show, :edit, :update, :index ]
+  end
 
   # Sample resource route with options:
   #   resources :products do

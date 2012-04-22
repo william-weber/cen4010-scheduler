@@ -32,8 +32,12 @@
                   %a{:href => edit_user_registration_path } My Profile
                 %li
                   = link_to 'Logout', destroy_user_session_path, :method => :delete
-                %li
-                  = link_to "My Requests", course_requests_path
+                - if current_user.is_student
+                  %li
+                    = link_to "My Requests", course_requests_path if current_user.is_student?
+                - if current_user.is_faculty
+                  %li
+                  = link_to "My Teaching Requests", faculty_course_requests_path if current_user.is_faculty?
               - else
                 %li
                   %a{:href => new_user_session_path } Login

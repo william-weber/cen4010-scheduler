@@ -1,0 +1,14 @@
+%h2= "Edit user #{@user.n_number}"
+= simple_form_for( [ :admin, @user ]) do |f|
+  = f.error_notification
+  .inputs
+    = f.input :n_number, :required => true
+    = f.input :email, :required => true, :autofocus => true
+    = f.input :first_name, :required => true
+    = f.input :last_name, :required => true
+    = f.input :is_admin
+    = f.input :is_student
+    = f.input :is_faculty
+    = f.input :is_secretary
+  .actions
+    = f.button :submit, "Submit"

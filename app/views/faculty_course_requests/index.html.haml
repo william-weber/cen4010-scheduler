@@ -1,0 +1,12 @@
+.page-header
+  = link_to new_faculty_course_request_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Faculty course request
+  %h1 My Teaching Requests
+
+- if @faculty_course_requests.nil?
+  %h3
+    Looks like you don't have any course requests!
+
+-else 
+  = render :partial => 'course_request', :collection => @faculty_course_requests

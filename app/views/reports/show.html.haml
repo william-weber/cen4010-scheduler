@@ -1,0 +1,20 @@
+.page-header
+  = link_to reports_path, :class => 'btn' do
+    %i.icon-list-alt
+    Back
+  = link_to edit_report_path(@report), :class => 'btn btn-primary' do
+    %i.icon-pencil.icon-white
+    Edit
+  %h1 Listing reports
+
+%dl
+  %dt Type:
+  %dd= @report.type
+  %dt Date run:
+  %dd= @report.date_run
+  %dt References:
+  %dd= @report.references
+  %dt Day:
+  %dd= @report.day
+  %dt Time:
+  %dd= @report.time

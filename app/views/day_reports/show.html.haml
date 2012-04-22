@@ -1,0 +1,28 @@
+.row
+  .span12
+    %h2= "Report for #{@day_report.day}"
+    %h3= "#{@day_report.season} #{@day_report.year}"
+    %h3= "Run #{@day_report.date_run}"
+    %hr
+.row
+  .span6
+    %h2 Students
+    Courses Requested:
+    %dl.dl-horizontal
+      - @day_report.student_requests.map(&:course).compact.uniq.each do |course|
+        %dt= course.identifier
+        %dd= @day_report.student_requests.count{ |r| r.course == course }
+
+    %ul.unstyled
+      - @day_report.student_requests.each do |request|
+        %li= "#{request.user.n_number} rank: #{request.rank}"
+
+  .span6
+    %h2 Faculty
+    Faculty Requesting:
+    = @day_report.faculty.count
+    %br
+    %br
+    %ul.unstyled
+      - @day_report.faculty_requests.each do |request|
+        %li= "#{request.user.n_number} rank: #{request.rank}"

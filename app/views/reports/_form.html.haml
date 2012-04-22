@@ -1,0 +1,12 @@
+= simple_form_for(@report, :defaults => { :input_html => { :class => 'input-xxlarge' } }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :type
+    = f.input :date_run
+    = f.input :references
+    = f.input :day
+    = f.input :time
+
+  .form-actions
+    = f.button :submit, :class => "btn-primary"

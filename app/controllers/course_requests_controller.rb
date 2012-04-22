@@ -17,8 +17,6 @@ class CourseRequestsController < ApplicationController
       flash[:notice] = "Request submitted"
       redirect_to course_requests_path + "##{dom_id(@course_request)}"
     else
-      # This line overrides the default rendering behavior, which
-      # would have been to render the "create" view.
       render :action => "new"
     end
   end

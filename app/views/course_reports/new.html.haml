@@ -1,0 +1,15 @@
+.page-header
+  %h1= "New Report by Course"
+
+= simple_form_for(@course_report) do |f|
+  .row
+    .span12
+      = f.input :year, :collection => [ "2012", "2013", "2014", "2015"]
+      = f.input :season, :collection => CourseRequest.seasons, :label => "Semester"
+      = f.association :course, :collection => Course.all.map{ |course| [ course.full_name, course.id ] }
+  .row
+    .span12
+      .form-actions
+        = f.button :submit, "Run Report", :class => 'btn btn-primary btn-large'
+        = link_to "Cancel", reports_path, :class => 'btn btn-large'
+

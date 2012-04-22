@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407224320) do
+ActiveRecord::Schema.define(:version => 20120422162058) do
 
   create_table "course_request_courses", :force => true do |t|
     t.integer  "rank"
@@ -20,14 +20,28 @@ ActiveRecord::Schema.define(:version => 20120407224320) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "time"
+    t.string   "day"
   end
 
   create_table "course_requests", :force => true do |t|
     t.string   "season"
     t.integer  "year"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "number_of_courses"
+    t.boolean  "course_release_expected"
+    t.boolean  "sabbatical_expected"
+    t.boolean  "dev_leave_expected"
+    t.integer  "course_preference_rank"
+    t.integer  "days_of_week_rank"
+    t.integer  "times_of_day_rank"
+    t.integer  "morning_rank"
+    t.integer  "afternoon_rank"
+    t.integer  "evening_rank"
+    t.integer  "summer_term_preference"
+    t.integer  "days_of_week_preference"
+    t.string   "type"
   end
 
   create_table "courses", :force => true do |t|
@@ -48,9 +62,31 @@ ActiveRecord::Schema.define(:version => 20120407224320) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "report_users", :force => true do |t|
+    t.integer "user_id"
+    t.string  "day"
+    t.string  "time"
+    t.integer "rank"
+    t.integer "report_id"
+    t.integer "course_id"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "type"
+    t.datetime "date_run"
+    t.integer  "course_id"
+    t.string   "day"
+    t.string   "time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "season"
+    t.integer  "year"
+    t.integer  "user_id"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -62,9 +98,13 @@ ActiveRecord::Schema.define(:version => 20120407224320) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "degree_program_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "n_number"
+    t.boolean  "is_student",             :default => true
+    t.boolean  "is_faculty",             :default => false
+    t.boolean  "is_admin",               :default => false
+    t.boolean  "is_secretary",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
