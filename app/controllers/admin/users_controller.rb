@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
     
     if @user.update_attributes(params[:user])
       flash[:notice] = "User updated"
-      render :action => "edit"
+      redirect_to admin_users_path
     else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
@@ -33,6 +33,6 @@ class Admin::UsersController < ApplicationController
   protected
 
   def only_admin
-    redirect_to 'home/index' unless (user_signed_in? && current_user.is_admin)
+    #redirect_to 'home/index' unless (user_signed_in? && current_user.is_admin)
   end
 end
