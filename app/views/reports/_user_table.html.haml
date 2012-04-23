@@ -1,0 +1,19 @@
+- if requests.empty?
+  No requests.
+-else 
+  %table.table.table-bordered.tablesorter{ :id => id }
+    %thead
+      %th N Number
+      %th Name
+      %th Days
+      %th Time
+      %th Rank
+    %tbody
+      - requests.each do |request|
+        %tr
+          %td= request.user.n_number
+          %td= "#{request.user.first_name} #{request.user.last_name}"
+          %td= request.day
+          %td= request.time
+          %td= request.rank
+

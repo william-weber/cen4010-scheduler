@@ -1,23 +1,93 @@
 = render :partial => 'reports/header', :locals => { :report_for => @time_report.time, :report => @time_report }
 .row
-  .span6
-    %h2 Students
-    Courses Requested:
-    %dl.dl-horizontal
-      - @time_report.student_requests.map(&:course).compact.uniq.each do |course|
-        %dt= course.identifier
-        %dd= @time_report.student_requests.count{ |r| r.course == course }
+  .span3
+    %h5 Number Courses Requested by:
+    %div.well{ :style => 'font-size: 18px;' }
+      %dl.dl-horizontal
+        %dt Students
+        %dd= @time_report.student_requests.map{ |req| req.course }.uniq.count
+        %br
+        %br
+        %dt Faculty
+        %dd= @time_report.faculty_requests.map{ |req| req.course }.uniq.count
 
-    %ul.unstyled
-      - @time_report.student_requests.each do |request|
-        %li= "#{request.user.n_number} rank: #{request.rank}"
+  .span9
+    %h5 Most Requested:
+    %br
+    .row
+      .span4{ :style => 'margin-left: 60px; width: 290px;' }
+        = render :partial => 'summary_table', :locals => { :title => 'Students',
+          :course => @time_report.most_requested(:course, :student_requests),
+          :day => @time_report.most_requested(:day, :student_requests) }
+        %em Note: Multiple results indicate a tie.
 
-  .span6
-    %h2 Faculty
-    Faculty Requesting:
-    = @time_report.faculty.count
+      .span4{ :style => 'margin-left: 60px; width: 290px;' }
+        = render :partial => 'summary_table', :locals => { :title => 'Faculty',
+          :course => @time_report.most_requested(:course, :faculty_requests),
+          :day => @time_report.most_requested(:day, :faculty_requests) }
+%hr
+.row
+  .span12
+    %h3 Details
     %br
-    %br
-    %ul.unstyled
-      - @time_report.faculty_requests.each do |request|
-        %li= "#{request.user.n_number} rank: #{request.rank}"
+
+.row
+  .span12
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{:href => '#students', 'data-toggle'=>'tab', :alt => 'Students', :title => 'Students'}
+            %i.icon-user
+            Students
+        %li
+          %a{:href => '#faculty', 'data-toggle'=>'tab', :alt => 'Faculty', :title => 'Faculty'}
+            %i.icon-user
+            Faculty
+        %li
+          %a{:href => '#courses', 'data-toggle'=>'tab', :alt => 'Day/Time', :title => 'Day/Time'}
+            %i.icon-list-alt
+            Courses
+      .tab-content
+        #students.tab-pane.active
+          = render :partial => 'reports/user_table', :locals => { :requests => @time_report.student_requests, :id => 'students-table' }
+
+        #faculty.tab-pane
+          = render :partial => 'reports/user_table', :locals => { :requests => @time_report.faculty_requests, :id => 'faculty-table' }
+
+        #courses.tab-pane
+          .span6
+          %table#courses-table.table.table-bordered.tablesorter
+            %thead
+              %tr
+                %th{ :rowspan => 2 }
+                  Course
+                %th{ :colspan => 5, :style => 'border-bottom: 1px solid #DDD;' }
+                  Students
+                %th{ :colspan => 5, :style => 'border-bottom: 1px solid #DDD;' }
+                  Faculty
+              %tr{ :style => 'font-size: 11px;' }
+                %th # Requests
+                %th Avg. Rank
+                %th Morning
+                %th Afternoon
+                %th Evening
+                %th # Requests
+                %th Avg. Rank
+                %th Morning
+                %th Afternoon
+                %th Evening
+            %tbody
+              - @courses.each do |course|
+                %tr
+                  %td= course.identifier
+                  %td= @time_report.request_counts(:course, :student_requests)[course]
+                  %td= @time_report.average_course_rank('CourseRequest', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('CourseRequest', 'Morning', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('CourseRequest', 'Afternoon', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('CourseRequest', 'Evening', course.id)
+                  %td= @time_report.request_counts(:course, :faculty_requests)[course]
+                  %td= @time_report.average_course_rank('FacultyCourseRequest', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('FacultyCourseRequest', 'Morning', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('FacultyCourseRequest', 'Afternoon', course.id)
+                  %td= @time_report.count_requests_by_time_and_course('FacultyCourseRequest', 'Evening', course.id)
+

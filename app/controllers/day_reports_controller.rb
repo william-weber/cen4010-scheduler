@@ -3,6 +3,7 @@ class DayReportsController < ApplicationController
   # GET /reports/1.json
   def show
     @day_report = DayReport.find(params[:id])
+    @courses = @day_report.report_users.map{ |req| req.course }.uniq.sort_by{ |course| course.identifier }
 
     respond_to do |format|
       format.html # show.html.erb

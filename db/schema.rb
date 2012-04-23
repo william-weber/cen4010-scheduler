@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422162058) do
+ActiveRecord::Schema.define(:version => 20120422234624) do
 
   create_table "course_request_courses", :force => true do |t|
     t.integer  "rank"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120422162058) do
     t.integer "rank"
     t.integer "report_id"
     t.integer "course_id"
+    t.string  "request_type"
   end
 
   create_table "reports", :force => true do |t|

@@ -6,12 +6,12 @@ describe CourseReport do
   it "should create list of users from course id on create" do
     course = FactoryGirl.create :course
     3.times do |i|
-      student = FactoryGirl.create :course_request, :season => 'Summer', :year => 2012
-      student.course_request_courses = [ CourseRequestCourse.new(:course => course, :course_request => student, :rank => i, :time => CourseRequestCourse.times[i] ) ]
+      student = FactoryGirl.build :course_request, :season => 'Summer', :year => 2012
+      student.course_request_courses = [ CourseRequestCourse.new(:course => course, :course_request => student, :rank => i+1, :time => CourseRequestCourse.times[i] ) ]
       student.save!
 
-      faculty = FactoryGirl.create :faculty_course_request, :season => 'Summer', :year => 2012
-      faculty.course_request_courses = [ CourseRequestCourse.new(:course => course, :course_request => faculty, :rank => CourseRequestCourse.times[i] ) ]
+      faculty = FactoryGirl.build :faculty_course_request, :season => 'Summer', :year => 2012
+      faculty.course_request_courses = [ CourseRequestCourse.new(:course => course, :course_request => faculty, :rank => i+1, :time => CourseRequestCourse.times[i] ) ]
       faculty.save!
     end
 

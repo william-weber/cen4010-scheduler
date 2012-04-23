@@ -1,0 +1,12 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= "#{type.to_s.pluralize.capitalize} Requested"
+      %th Students
+      %th Faculty
+  %tbody
+    - collection.each do |item|
+      %tr
+        %td= item
+        %td= format_number_summary @course_report.request_counts(type, :student_requests)[item]
+        %td= format_number_summary @course_report.request_counts(type, :faculty_requests)[item]

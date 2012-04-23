@@ -1,0 +1,14 @@
+%table.table.table-condensed.table-bordered
+  %thead
+    %tr
+      %th{:colspan => 2, :style => 'text-align: center;'}
+        = title
+  %tbody
+    %tr
+      %td.report-summary-label
+        %h6 Course
+      %td= format_summary course
+    %tr
+      %td.report-summary-label
+        %h6 Day
+      %td= format_summary day

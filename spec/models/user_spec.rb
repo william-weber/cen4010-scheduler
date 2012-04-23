@@ -14,4 +14,9 @@ describe User do
     user = FactoryGirl.create :user
     assert user.valid?
   end
+
+  it "should format its name" do
+    user = FactoryGirl.build :user
+    user.full_name.should == "#{user.first_name} #{user.last_name}"
+  end
 end

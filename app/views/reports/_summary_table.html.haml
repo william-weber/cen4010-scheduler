@@ -1,0 +1,18 @@
+%table.table.table-condensed.table-bordered
+  %thead
+    %tr
+      %th{:colspan => 2, :style => 'text-align: center;'}
+        = title
+  %tbody
+    %tr
+      %td.report-summary-label
+        %h6 Day
+      %td= format_summary day
+    %tr
+      %td.report-summary-label
+        %h6 Time
+      %td= format_summary time
+    %tr
+      %td.report-summary-label
+        %h6 Average Rank
+      %td= format_summary average_rank

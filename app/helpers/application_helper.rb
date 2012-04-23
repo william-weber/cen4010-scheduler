@@ -20,4 +20,24 @@ module ApplicationHelper
       end
     end
   end
+
+  def format_summary(summary_string)
+    if summary_string.to_s.empty?
+      return content_tag(:em, 'no data')
+    else
+      return summary_string.to_s
+    end
+  end
+
+  def format_number_summary(number)
+    if number.to_s.empty?
+      return '0'
+    else
+      return number.to_s
+    end
+  end
+
+  def days(report)
+    report.season == CourseRequest.seasons[1] ? FacultyCourseRequest.summer_days : FacultyCourseRequest.fall_spring_days
+  end
 end

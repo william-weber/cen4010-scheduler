@@ -13,3 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() 
+    { 
+        $("#reports_table").tablesorter(); 
+        $("#students-table").tablesorter(); 
+        $("#faculty-table").tablesorter(); 
+        $("#courses-table").tablesorter({
+          headers: { 
+            // assign the secound column (we start counting zero) 
+            1: { 
+                // disable it by setting the property sorter to false 
+                sorter: false 
+            }, 
+            // assign the third column (we start counting zero) 
+            2: { 
+                // disable it by setting the property sorter to false 
+                sorter: false 
+            } 
+          } 
+        }); 
+    } 
+);
