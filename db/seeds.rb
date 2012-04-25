@@ -9,7 +9,7 @@
 #
 User.create!( :n_number => 'n00000000', :password => 'password123', :password_confirmation => 'password123', :first_name => 'Temp', :last_name => 'Admin', :email => 'temp@admin.temp')
 user = User.first
-user..is_admin = true
+user.is_admin = true
 user.save!
 
 comp_sci = DegreeProgram.create!( :name => "Computer Science" )
