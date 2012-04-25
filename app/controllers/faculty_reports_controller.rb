@@ -3,6 +3,7 @@ class FacultyReportsController < ApplicationController
   # GET /reports/1.json
   def show
     @faculty_report = FacultyReport.find(params[:id])
+    @faculty_requests = FacultyCourseRequest.find_all_by_season_and_year(@faculty_report.season, @faculty_report.year)
 
     respond_to do |format|
       format.html # show.html.erb

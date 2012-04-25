@@ -1,4 +1,63 @@
 = render :partial => 'reports/header', :locals => { :report_for => 'Faculty Requests', :report => @faculty_report }
 .row
   .span12
-    = render :partial => 'reports/user_table', :locals => { :requests => @faculty_report.report_users, :id => 'faculty-table' }
+    %table.table.table-bordered.tablesorter
+      %thead
+        %th N Number
+        %th Name
+        %th Course Release
+        %th Sabbatical
+        %th Fac Dev Leave
+        %th Ranking
+        %th Time of Day
+        %th Days of Week
+        - if @faculty_report.season == 'Summer'
+          %th Summer Term
+      %tbody
+        - @faculty_requests.each do |request|
+          %tr
+            %td= request.user.n_number
+            %td= "#{request.user.first_name} #{request.user.last_name}"
+            %td= request.course_release_expected
+            %td= request.sabbatical_expected
+            %td= request.dev_leave_expected
+            %td
+              %strong Ranks
+              %br
+              Course Pref
+              = request.course_preference_rank
+              %br
+              Times of Day
+              = request.times_of_day_rank
+              %br
+              Days of Week
+              = request.days_of_week_rank
+            %td
+              %strong Ranks
+              %br
+              Morning
+              = request.morning_rank
+              %br
+              Afternoon
+              = request.afternoon_rank
+              %br
+              Evening
+              = request.evening_rank
+              %br
+            - unless request.for_summer?
+              %td= FacultyCourseRequest.fall_spring_days[request.days_of_week_preference]
+            - else
+              %td= FacultyCourseRequest.summer_days[request.days_of_week_preference]
+              %td= request.summer_term_preference
+          - request.course_request_courses.each do |crc|
+            %tr
+              %td{:colspan => 2, :rowspan => request.course_request_courses.count}
+                %strong Courses
+              %td{:colspan => 3}
+                = crc.course.full_name
+              %td{:colspan => 1}
+                = crc.rank
+              %td{:colspan => 1}
+                = crc.time
+              %td{:colspan => 1}
+                = crc.day

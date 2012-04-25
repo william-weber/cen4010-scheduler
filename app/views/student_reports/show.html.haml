@@ -1,4 +1,24 @@
 = render :partial => 'reports/header', :locals => { :report_for => 'Student Requests', :report => @student_report }
 .row
   .span12
-    = render :partial => 'reports/user_table', :locals => { :requests => @student_report.report_users, :id => 'students-table' }
+    - if @student_report.report_users.empty?
+      No requests.
+    -else 
+      %table.table.table-bordered.tablesorter{ :id => 'sorttable' }
+        %thead
+          %th N Number
+          %th Course
+          %th Name
+          %th Days
+          %th Time
+          %th Rank
+        %tbody
+          - @student_report.report_users.each do |request|
+            %tr
+              %td= request.user.n_number
+              %td= request.course.identifier
+              %td= "#{request.user.first_name} #{request.user.last_name}"
+              %td= request.day
+              %td= request.time
+              %td= request.rank
+

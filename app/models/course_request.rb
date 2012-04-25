@@ -7,7 +7,7 @@ class CourseRequest < ActiveRecord::Base
   validates :season, :presence => true
   validates :year, :presence => true
   validates :course_request_courses, :length => { :in => 1..3 }
-  validates_uniqueness_of :season, :scope => [ :year, :user_id ]
+  validates_uniqueness_of :season, :scope => [ :year, :user_id, :type ]
 
   accepts_nested_attributes_for :course_request_courses, :reject_if => :all_blank, :allow_destroy => true
 

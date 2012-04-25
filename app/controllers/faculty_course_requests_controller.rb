@@ -26,11 +26,13 @@ class FacultyCourseRequestsController < ApplicationController
     @faculty_course_request = FacultyCourseRequest.new(params[:faculty_course_request])
     @faculty_course_request.user = current_user
 
-    if @faculty_course_request.save
-      flash[:notice] = "Request submitted"
-      redirect_to faculty_course_requests_path + "##{dom_id(@faculty_course_request)}"
-    else
-      format.html { render action: "new" }
+    respond_to do |format|
+      if @faculty_course_request.save
+        flash[:notice] = "Request submitted"
+        redirect_to faculty_course_requests_path + "##{dom_id(@faculty_course_request)}"
+      else
+        format.html { render action: "new" }
+      end
     end
   end
 
