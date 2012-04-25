@@ -1,5 +1,5 @@
 .row{ :id => dom_id(course_request) }
-  .span6
+  .span3
     %dl.dl-horizontal
       %dt
         Semester
@@ -14,7 +14,7 @@
       %br
       %br
       %dd= link_to "Edit", edit_faculty_course_request_path(course_request), :class => 'btn btn-primary'
-  .span6
+  .span3
     %dl.dl-horizontal
       %dt Course Release
       %dd= boolean_to_check_or_x course_request.course_release_expected
@@ -22,27 +22,43 @@
       %dd= boolean_to_check_or_x course_request.sabbatical_expected
       %dt Dev Leave
       %dd= boolean_to_check_or_x course_request.dev_leave_expected
+  .span6
+    - course_request.course_request_courses.each do |req|
+      %dl.dl-horizontal
+        %dt
+          Course
+        %dd= req.course.full_name
+        %dt
+          Time
+        %dd= req.time
+        %dt
+          Days
+        %dd= req.day
+        %dt
+          Rank
+        %dd= req.rank
+        %br
 
 .row
-  .span9
+  .span6
     %dl.dl-horizontal
       Rankings
       %br
       .row
-        .span3
+        .span2
           %dt Course Prefs
           %dd= course_request.course_preference_rank
           %dt Days of Week
           %dd= course_request.days_of_week_rank
           %dt Times of Day
           %dd= course_request.times_of_day_rank
-        .span3
+        .span2
           %dt Morning
           %dd= course_request.morning_rank
           %dt Afternoon
           %dd= course_request.afternoon_rank
           %dt Evening
           %dd= course_request.evening_rank
-        .span3
+        .span2
           %dt Days of week preference
           %dd= course_request.days_of_week_preference

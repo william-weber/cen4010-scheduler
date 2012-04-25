@@ -49,10 +49,10 @@
             Courses
       .tab-content
         #students.tab-pane.active
-          = render :partial => 'reports/user_table', :locals => { :requests => @time_report.student_requests, :id => 'students-table' }
+          = render :partial => 'user_table', :locals => { :requests => @time_report.student_requests, :id => 'students-table' }
 
         #faculty.tab-pane
-          = render :partial => 'reports/user_table', :locals => { :requests => @time_report.faculty_requests, :id => 'faculty-table' }
+          = render :partial => 'user_table', :locals => { :requests => @time_report.faculty_requests, :id => 'faculty-table' }
 
         #courses.tab-pane
           .span6

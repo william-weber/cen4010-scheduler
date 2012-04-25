@@ -20,6 +20,9 @@ class FacultyCourseRequestsController < ApplicationController
 
   def edit
     @faculty_course_request = FacultyCourseRequest.find_by_id_and_user_id(params[:id], current_user.id)
+    (3 - @faculty_course_request.course_request_courses.count).times do
+      @faculty_course_request.course_request_courses.build
+    end
   end
 
   def create

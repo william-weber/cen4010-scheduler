@@ -31,6 +31,9 @@ class CourseRequestsController < ApplicationController
 
   def edit
     @course_request = CourseRequest.find_by_id_and_user_id(params[:id], current_user.id)
+    (3 - @course_request.course_request_courses.count).times do
+      @course_request.course_request_courses.build
+    end
   end
 
   def update
