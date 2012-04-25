@@ -49,10 +49,11 @@
             - else
               %td= FacultyCourseRequest.summer_days[request.days_of_week_preference]
               %td= request.summer_term_preference
+          %tr
+            %td{:colspan => 2, :rowspan => request.course_request_courses.count + 1}
+              %strong Courses
           - request.course_request_courses.each do |crc|
             %tr
-              %td{:colspan => 2, :rowspan => request.course_request_courses.count}
-                %strong Courses
               %td{:colspan => 3}
                 = crc.course.full_name
               %td{:colspan => 1}
