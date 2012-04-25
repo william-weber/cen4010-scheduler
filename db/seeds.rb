@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 #
-User.new( :n_number => 'n00000000', :password => 'password123', :password_confirmation => 'password123', :first_name => 'Temp', :last_name => 'Admin', :email => 'temp@admin.temp')
+User.create!( :n_number => 'n00000000', :password => 'password123', :password_confirmation => 'password123', :first_name => 'Temp', :last_name => 'Admin', :email => 'temp@admin.temp')
 comp_sci = DegreeProgram.create!( :name => "Computer Science" )
 Course.create!( :identifier => "COP2220", :name => "Computer Science I", :offered_odd_fall => true, :offered_even_spring => true, :offered_even_fall => true, :offered_odd_spring => true, :degree_program => comp_sci ) 
 Course.create!( :identifier => "COT3100", :name => "Comp Structures", :offered_odd_fall => true, :offered_even_spring => true, :offered_even_fall => true, :offered_odd_spring => true, :degree_program => comp_sci ) 
