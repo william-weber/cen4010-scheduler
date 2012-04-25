@@ -1,0 +1,4 @@
+= render :partial => 'reports/header', :locals => { :report_for => 'Faculty Requests', :report => @faculty_report }
+.row
+  .span12
+    = render :partial => 'reports/user_table', :locals => { :requests => @faculty_report.report_users, :id => 'faculty-table' }

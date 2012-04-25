@@ -1,9 +1,14 @@
 .page-header
-  %h1= "Courses for #{@semester}"
   - if user_signed_in?
-    = link_to "Request Courses", new_course_request_path if current_user.is_student?
-    %br
-    = link_to "Request to teach courses", new_faculty_course_request_path if current_user.is_faculty?
+    - if current_user.is_student
+      = link_to(new_course_request_path, :class => 'btn btn-primary') do
+        %i.icon-plus.icon-white
+        Request Courses
+    - if current_user.is_faculty
+      = link_to(new_faculty_course_request_path, :class => 'btn btn-primary') do
+        %i.icon-plus.icon-white
+        Request to Teach Courses
+  %h1= "Courses for #{@semester}"
 
 .row
   .span4
@@ -15,8 +20,15 @@
       = submit_tag "View", :class => "btn btn-info"
 
   .span8
-    - @courses.each do |c|
-      %p
-        = c.identifier
-        = c.name
-      %br
+    %table#sorttable.table.table-bordered.tablesorter
+      %thead
+        %tr
+          %th Identifier
+          %th Name
+          %th Degree Program
+      %tbody
+        - @courses.each do |c|
+          %tr
+            %td= c.identifier
+            %td= c.name
+            %td= c.degree_program.name

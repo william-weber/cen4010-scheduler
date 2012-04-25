@@ -16,9 +16,17 @@
 
 $(document).ready(function() 
     { 
+        $("#sorttable").tablesorter(); 
         $("#reports_table").tablesorter(); 
         $("#students-table").tablesorter(); 
         $("#faculty-table").tablesorter(); 
+        $("#admin-courses-table").tablesorter({
+          headers: {
+            5: {
+              sorter: false
+            }
+          }
+        });
         $("#courses-table").tablesorter({
           headers: { 
             // assign the secound column (we start counting zero) 

@@ -1,0 +1,15 @@
+.page-header
+  %h1 Add Course
+
+= simple_form_for([ :admin, @course]) do |f|
+  .row
+    .span12
+      = f.input :identifier
+      = f.input :name
+      = f.association :degree_program, :collection => DegreeProgram.all
+  .row
+    .span12
+      .form-actions
+        = f.button :submit, "Add Course", :class => 'btn btn-primary btn-large'
+        = link_to "Cancel", admin_courses_path, :class => 'btn btn-large'
+

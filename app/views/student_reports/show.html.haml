@@ -1,14 +1,4 @@
 = render :partial => 'reports/header', :locals => { :report_for => 'Student Requests', :report => @student_report }
 .row
-  .span6
-    %h2 Students
-    Courses Requested:
-    %dl.dl-horizontal
-      - @student_report.report_users.map(&:course).compact.uniq.each do |course|
-        %dt= course.identifier
-        %dd= @student_report.student_requests.count{ |r| r.course == course }
-
-    %ul.unstyled
-      - @student_report.student_requests.each do |request|
-        %li= "#{request.user.n_number} rank: #{request.rank}"
-
+  .span12
+    = render :partial => 'reports/user_table', :locals => { :requests => @student_report.report_users, :id => 'students-table' }

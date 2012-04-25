@@ -26,9 +26,11 @@ Cen4010Scheduler::Application.routes.draw do
   resources :day_reports, :only => [ :show, :new, :create ]
   resources :time_reports, :only => [ :show, :new, :create ]
   resources :student_reports, :only => [ :show, :new, :create ]
+  resources :faculty_reports, :only => [ :show, :new, :create ]
 
   namespace :admin do
     resources :users, :only => [ :show, :edit, :update, :index ]
+    resources :courses, :only => [ :edit, :update, :index, :new, :create ]
   end
 
   # Sample resource route with options:
