@@ -48,7 +48,7 @@
               %td= FacultyCourseRequest.fall_spring_days[request.days_of_week_preference]
             - else
               %td= FacultyCourseRequest.summer_days[request.days_of_week_preference]
-              %td= request.summer_term_preference
+              %td= FacultyCourseRequest.summer_terms[request.summer_term_preference]
           %tr
             %td{:colspan => 2, :rowspan => request.course_request_courses.count + 1}
               %strong Courses
