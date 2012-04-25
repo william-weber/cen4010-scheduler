@@ -10,13 +10,13 @@ class Course < ActiveRecord::Base
   def self.courses_for(array)
     year = array[1]
     season = array[0]
-    if year.odd? and season == :fall
+    if year.odd? and season == "fall"
       args = { :offered_odd_fall => true }
-    elsif year.even? and season == :spring
+    elsif year.even? and season == "spring"
       args = { :offered_even_spring => true }
-    elsif year.even? and season == :fall
+    elsif year.even? and season == "fall"
       args = { :offered_even_fall => true }
-    elsif year.odd? and season == :spring
+    elsif year.odd? and season == "spring"
       args = { :offered_odd_spring => true }
     end
     Course.where(args)
