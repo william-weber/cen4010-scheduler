@@ -57,10 +57,10 @@
             Days/Times
       .tab-content
         #students.tab-pane.active
-          = render :partial => 'reports/user_table', :locals => { :requests => @course_report.student_requests }
+          = render :partial => 'reports/user_table', :locals => { :requests => @course_report.student_requests, :id => 'student-requests' }
 
         #faculty.tab-pane
-          = render :partial => 'reports/user_table', :locals => { :requests => @course_report.faculty_requests }
+          = render :partial => 'reports/user_table', :locals => { :requests => @course_report.faculty_requests, :id => 'faculty-requests' }
 
         #day-time.tab-pane
           .row
