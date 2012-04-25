@@ -24,26 +24,25 @@
       %dd= boolean_to_check_or_x course_request.dev_leave_expected
 
 .row
-  .span6
+  .span9
     %dl.dl-horizontal
       Rankings
       %br
-      %dt Course Prefs
-      %dd= course_request.course_preference_rank
-      %br
-      %dt Days of Week
-      %dd= course_request.days_of_week_rank
-      %br
-      %dt Times of Day
-      %dd= course_request.times_of_day_rank
-      %br
-      %dt Morning
-      %dd= course_request.morning_rank
-      %dt Afternoon
-      %dd= course_request.afternoon_rank
-      %dt Evening
-      %dd= course_request.evening_rank
-  .span6
-    %dl.dl-horizontal
-      %dt Days of week preference
-      %dd= course_request.days_of_week_preference
+      .row
+        .span3
+          %dt Course Prefs
+          %dd= course_request.course_preference_rank
+          %dt Days of Week
+          %dd= course_request.days_of_week_rank
+          %dt Times of Day
+          %dd= course_request.times_of_day_rank
+        .span3
+          %dt Morning
+          %dd= course_request.morning_rank
+          %dt Afternoon
+          %dd= course_request.afternoon_rank
+          %dt Evening
+          %dd= course_request.evening_rank
+        .span3
+          %dt Days of week preference
+          %dd= course_request.days_of_week_preference
